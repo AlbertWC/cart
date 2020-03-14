@@ -11,7 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('cart.show');
-});
+Route::resource('carts', 'CartController');
 
