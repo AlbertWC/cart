@@ -36,7 +36,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+        ]);
+        $cart = new Cart();
+        $cart->product_title = $request->input('title');
+        $cart->product_price = $request->input('price');
+        $cart->product_description = $request->input('description');
+        $cart->save();
+        return redirect('/carts');        
     }
 
     /**
@@ -58,7 +68,9 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cart = Cart::find($id);
+        return view('carts.edit')->with('cart', $cart);
+
     }
 
     /**
@@ -70,7 +82,19 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+        ]);
+        $cart = Cart::find($id);
+        $cart->product_title = $request->input('title');
+        $cart->product_price = $request->input('price');
+        $cart->product_description = $request->input('description');
+        $cart->update();
+        
+        return redirect('/carts');
+
     }
 
     /**
@@ -81,6 +105,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cart = Cart::find($id);
+        $cart->delete();
+        return redirect('/carts');
     }
 }

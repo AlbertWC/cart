@@ -14,10 +14,11 @@
 
         </div>
         <div class="form-group">
-            {{Form::label('title', 'Product title')}}
-            {{Form::text('title', '', ['class'=> 'form-control','placeholder'=> 'Product title'])}}
-
+            {{Form::label('description', 'Product Description')}}
+            {{Form::text('description', '', ['class'=> 'form-control','placeholder'=> 'Product Description'])}}
         </div>
+
+        {{Form::submit('Submit' ,['class'=> 'btn btn-primary'])}}
 
 
     {{Form::close()}}
